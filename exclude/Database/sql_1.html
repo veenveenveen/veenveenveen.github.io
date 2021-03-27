@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>SQL(2) - 吃饭不加糖</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="吃饭不加糖"><meta name="msapplication-TileImage" content="/images/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="吃饭不加糖"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="查询数据基本查询要查询数据库表的数据，我们使用如下的SQL语句： 1SELECT * FROM &amp;lt;表名&amp;gt; 假设表名是students，要查询students表的所有行，我们用如下SQL语句： 1SELECT * FROM students;  使用SELECT * FROM students时，SELECT是关键字，表示将要执行一个查询，*表示“所有列”，FROM表示将要从哪个表查询，"><meta property="og:type" content="blog"><meta property="og:title" content="SQL(2)"><meta property="og:url" content="https://veenveenveen.github.io/exclude/Database/sql_1.html"><meta property="og:site_name" content="吃饭不加糖"><meta property="og:description" content="查询数据基本查询要查询数据库表的数据，我们使用如下的SQL语句： 1SELECT * FROM &amp;lt;表名&amp;gt; 假设表名是students，要查询students表的所有行，我们用如下SQL语句： 1SELECT * FROM students;  使用SELECT * FROM students时，SELECT是关键字，表示将要执行一个查询，*表示“所有列”，FROM表示将要从哪个表查询，"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://veenveenveen.github.io/imgs/sql/sql_1.png"><meta property="og:image" content="https://veenveenveen.github.io/imgs/sql/sql_2.png"><meta property="og:image" content="https://veenveenveen.github.io/imgs/sql/sql_3.png"><meta property="og:image" content="https://veenveenveen.github.io/imgs/sql/sql_4.png"><meta property="article:published_time" content="2021-03-26T07:10:08.000Z"><meta property="article:modified_time" content="2021-03-27T05:44:13.719Z"><meta property="article:author" content="吃饭不加糖"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/imgs/sql/sql_1.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://veenveenveen.github.io/exclude/Database/sql_1.html"},"headline":"SQL(2)","image":["https://veenveenveen.github.io/imgs/sql/sql_1.png","https://veenveenveen.github.io/imgs/sql/sql_2.png","https://veenveenveen.github.io/imgs/sql/sql_3.png","https://veenveenveen.github.io/imgs/sql/sql_4.png"],"datePublished":"2021-03-26T07:10:08.000Z","dateModified":"2021-03-27T05:44:13.719Z","author":{"@type":"Person","name":"吃饭不加糖"},"description":"查询数据基本查询要查询数据库表的数据，我们使用如下的SQL语句： 1SELECT * FROM &lt;表名&gt; 假设表名是students，要查询students表的所有行，我们用如下SQL语句： 1SELECT * FROM students;  使用SELECT * FROM students时，SELECT是关键字，表示将要执行一个查询，*表示“所有列”，FROM表示将要从哪个表查询，"}</script><link rel="canonical" href="https://veenveenveen.github.io/exclude/Database/sql_1.html"><link rel="icon" href="/images/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.png" alt="吃饭不加糖" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">SQL(2)</h1><div class="content"><h1 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h1><h2 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h2><p>要查询数据库表的数据，我们使用如下的SQL语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+<p>假设表名是students，要查询students表的所有行，我们用如下SQL语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>SELECT * FROM students</code>时，<code>SELECT</code>是关键字，表示将要执行一个查询，<code>*</code>表示“所有列”，FROM表示将要从哪个表查询，本例中是<code>students</code>表。</p>
+<p>该SQL将查询出students表的所有数据。注意：查询结果也是一个二维表，它包含列名和每一行的数据。</p>
+<p><strong>SELECT语句其实并不要求一定要有FROM子句。我们来试试下面的SELECT语句：</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">100</span><span class="operator">+</span><span class="number">200</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上述查询会直接计算出表达式的结果。虽然SELECT可以用作计算，但它并不是SQL的强项。但是，不带FROM子句的SELECT语句有一个有用的用途，就是用来判断当前到数据库的连接是否有效。许多检测工具会执行一条<code>SELECT 1;</code>来测试数据库连接。</p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>使用SELECT * FROM &lt;表名&gt;可以查询到一张表的所有记录。但是，很多时候，我们并不希望获得所有记录，而是根据条件选择性地获取指定条件的记录，例如，查询分数在80分以上的学生记录。在一张表有数百万记录的情况下，获取所有记录不仅费时，还费内存和网络带宽。</p>
+<p>SELECT语句可以通过WHERE条件来设定查询条件，查询结果是满足查询条件的记录。例如，要指定条件“分数在80分或以上的学生”，写成WHERE条件就是<code>SELECT * FROM students WHERE score &gt;= 80</code>。</p>
+<p>其中，WHERE关键字后面的<code>score &gt;= 80</code>就是条件。<code>score</code>是列名，该列存储了学生的成绩，因此，<code>score &gt;= 80</code>就筛选出了指定条件的记录。</p>
+<p>因此，条件查询的语法就是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> <span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>AND</li>
+</ul>
+<p>条件表达式可以用<code>&lt;条件1&gt; AND &lt;条件2&gt;</code>表达满足条件1并且满足条件2。例如，符合条件“分数在80分或以上”，并且还符合条件“男生”，把这两个条件写出来：</p>
+<p>条件1：根据score列的数据判断：<code>score &gt;= 80</code>；<br>条件2：根据gender列的数据判断：<code>gender = &#39;M&#39;</code>，注意gender列存储的是字符串，需要用单引号括起来。<br>就可以写出WHERE条件：<code>score &gt;= 80 AND gender = &#39;M&#39;</code>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> score <span class="operator">&gt;=</span> <span class="number">80</span> <span class="keyword">AND</span> gender <span class="operator">=</span> <span class="string">&#x27;F&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>OR</li>
+</ul>
+<p>第二种条件是&lt;条件1&gt; OR &lt;条件2&gt;，表示满足条件1或者满足条件2。例如，把上述AND查询的两个条件改为OR，查询结果就是“分数在80分或以上”或者“男生”，满足任意之一的条件即选出该记录：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> score <span class="operator">&gt;=</span> <span class="number">80</span> <span class="keyword">OR</span> gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>很显然OR条件要比AND条件宽松，返回的符合条件的记录也更多。</p>
+<ul>
+<li>NOT</li>
+</ul>
+<p>第三种条件是NOT &lt;条件&gt;，表示“不符合该条件”的记录。例如，写一个“不是2班的学生”这个条件，可以先写出“是2班的学生”：<code>class_id = 2</code>，再加上NOT：<code>NOT class_id = 2</code>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> class_id <span class="operator">&lt;&gt;</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上述NOT条件<code>NOT class_id = 2</code>其实等价于<code>class_id &lt;&gt; 2</code>，因此，NOT查询不是很常用。</p>
+<ul>
+<li>多个条件组合</li>
+</ul>
+<p>要组合三个或者更多的条件，就需要用小括号()表示如何进行条件运算。例如，编写一个复杂的条件：分数在80以下或者90以上，并且是男生：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> (score <span class="operator">&lt;</span> <span class="number">80</span> <span class="keyword">OR</span> score <span class="operator">&gt;</span> <span class="number">90</span>) <span class="keyword">AND</span> gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果不加括号，条件运算按照NOT、AND、OR的优先级进行，即NOT优先级最高，其次是AND，最后是OR。加上括号可以改变优先级。</p>
+<ul>
+<li>常用的条件表达式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">条件</th>
+<th align="center">表达式举例1</th>
+<th align="center">表达式举例2</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">使用=判断相等</td>
+<td align="center">score = 80</td>
+<td align="center">name = ‘abc’</td>
+<td align="center">字符串需要用单引号括起来</td>
+</tr>
+<tr>
+<td align="center">使用&gt;判断大于</td>
+<td align="center">score &gt; 80</td>
+<td align="center">name &gt; ‘abc’</td>
+<td align="center">字符串比较根据ASCII码，中文字符比较根据数据库设置</td>
+</tr>
+<tr>
+<td align="center">使用&gt;=判断大于或相等</td>
+<td align="center">score &gt;= 80</td>
+<td align="center">name &gt;= ‘abc’</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">使用&lt;判断小于</td>
+<td align="center">score &lt; 80</td>
+<td align="center">name &lt;= ‘abc’</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">使用&lt;=判断小于或相等</td>
+<td align="center">score &lt;= 80</td>
+<td align="center">name &lt;= ‘abc’</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">使用&lt;&gt;判断不相等</td>
+<td align="center">score &lt;&gt; 80</td>
+<td align="center">name &lt;&gt; ‘abc’</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">使用LIKE判断相似</td>
+<td align="center">name LIKE ‘ab%’</td>
+<td align="center">name LIKE ‘%bc%’</td>
+<td align="center">%表示任意字符，例如’ab%’将匹配’ab’，’abc’，’abcd’</td>
+</tr>
+</tbody></table>
+<h2 id="投影查询"><a href="#投影查询" class="headerlink" title="投影查询"></a>投影查询</h2><p>使用<code>SELECT * FROM &lt;表名&gt; WHERE &lt;条件&gt;</code>可以选出表中的若干条记录。我们注意到返回的二维表结构和原表是相同的，即结果集的所有列与原表的所有列都一一对应。</p>
+<p>如果我们只希望返回某些列的数据，而不是所有列的数据，我们可以用<code>SELECT 列1, 列2, 列3 FROM ...</code>，让结果集仅包含指定列。这种操作称为投影查询。</p>
+<p>例如，从students表中返回id、score和name这三列：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用投影查询</span></span><br><span class="line"><span class="keyword">SELECT</span> id, score, name <span class="keyword">FROM</span> students;</span><br></pre></td></tr></table></figure>
+<p>这样返回的结果集就只包含了我们指定的列，并且，结果集的列的顺序和原表可以不一样。</p>
+<p>使用<code>SELECT 列1, 列2, 列3 FROM ...</code>时，还可以给每一列起个别名，这样，结果集的列名就可以与原表的列名不同。它的语法是<code>SELECT 列1 别名1, 列2 别名2, 列3 别名3 FROM ...</code>。</p>
+<p>例如，以下SELECT语句将列名score重命名为points，而id和name列名保持不变：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用投影查询，并将列名重命名：</span></span><br><span class="line"><span class="keyword">SELECT</span> name, id, score points <span class="keyword">FROM</span> students;</span><br></pre></td></tr></table></figure>
+<p>投影查询同样可以接WHERE条件，实现复杂的查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用投影查询+WHERE条件：</span></span><br><span class="line"><span class="keyword">SELECT</span> id, score points, name <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>我们使用SELECT查询时，查询结果集通常是按照id排序的，也就是根据主键排序。这也是大部分数据库的做法。如果我们要根据其他条件排序怎么办？可以加上<code>ORDER BY</code>子句。例如按照成绩从低到高进行排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按score从低到高</span></span><br><span class="line"><span class="keyword">SELECT</span> id, name, gender, score <span class="keyword">FROM</span> students <span class="keyword">ORDER</span> <span class="keyword">BY</span> score;</span><br></pre></td></tr></table></figure>
+<p>如果要反过来，按照成绩从高到底排序，我们可以加上DESC表示“倒序”：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按score从高到低</span></span><br><span class="line"><span class="keyword">SELECT</span> id, name, gender, score <span class="keyword">FROM</span> students <span class="keyword">ORDER</span> <span class="keyword">BY</span> score <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+<p>如果score列有相同的数据，要进一步排序，可以继续添加列名。例如，使用<code>ORDER BY score DESC, gender</code>表示先按score列倒序，如果有相同分数的，再按gender列排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按score, gender排序:</span></span><br><span class="line"><span class="keyword">SELECT</span> id, name, gender, score <span class="keyword">FROM</span> students <span class="keyword">ORDER</span> <span class="keyword">BY</span> score <span class="keyword">DESC</span>, gender;</span><br></pre></td></tr></table></figure>
+<p>默认的排序规则是<code>ASC</code>：“升序”，即从小到大。<code>ASC</code>可以省略，即<code>ORDER BY score ASC</code>和<code>ORDER BY score</code>效果一样。</p>
+<p>如果有WHERE子句，那么ORDER BY子句要放到WHERE子句后面。例如，查询一班的学生成绩，并按照倒序排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 带WHERE条件的ORDER BY:</span></span><br><span class="line"><span class="keyword">SELECT</span> id, name, gender, score</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">WHERE</span> class_id <span class="operator">=</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> score <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+<p>这样，结果集仅包含符合WHERE条件的记录，并按照ORDER BY的设定排序。</p>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>使用SELECT查询时，如果结果集数据量很大，比如几万行数据，放在一个页面显示的话数据量太大，不如分页显示，每次显示100条。</p>
+<p>要实现分页功能，实际上就是从结果集中显示第1<del>100条记录作为第1页，显示第101</del>200条记录作为第2页，以此类推。</p>
+<p>因此，分页实际上就是从结果集中“截取”出第M~N条记录。这个查询可以通过<code>LIMIT &lt;M&gt; OFFSET &lt;N&gt;</code>子句实现。我们先把所有学生按照成绩从高到低进行排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按score从高到低</span></span><br><span class="line"><span class="keyword">SELECT</span> id, name, gender, score <span class="keyword">FROM</span> students <span class="keyword">ORDER</span> <span class="keyword">BY</span> score <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+<p>现在，我们把结果集分页，每页3条记录。要获取第1页的记录，可以使用<code>LIMIT 3 OFFSET 0</code>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询第1页</span></span><br><span class="line"><span class="keyword">SELECT</span> id, name, gender, score</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> score <span class="keyword">DESC</span></span><br><span class="line">LIMIT <span class="number">3</span> <span class="keyword">OFFSET</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>上述查询<code>LIMIT 3 OFFSET 0</code>表示，对结果集从0号记录开始，最多取3条。注意SQL记录集的索引从0开始。</p>
+<p>如果要查询第2页，那么我们只需要“跳过”头3条记录，也就是对结果集从3号记录开始查询，把OFFSET设定为3：<code>LIMIT 3 OFFSET 3</code>;类似的，查询第3页的时候，OFFSET应该设定为6:<code>LIMIT 3 OFFSET 6</code>;查询第4页的时候，OFFSET应该设定为9:<code>LIMIT 3 OFFSET 9</code>;如果最后一页只有1条记录，因此最终结果集按实际数量1显示。LIMIT 3表示的意思是“最多3条记录”。</p>
+<p>可见，分页查询的关键在于，首先要确定每页需要显示的结果数量pageSize（这里是3），然后根据当前页的索引pageIndex（从1开始），确定LIMIT和OFFSET应该设定的值：</p>
+<p><code>LIMIT</code>总是设定为<code>pageSize</code>；<br><code>OFFSET</code>计算公式为<code>pageSize * (pageIndex - 1)</code>。<br>这样就能正确查询出第N页的记录集。</p>
+<p>如果原本记录集一共就10条记录，但我们把OFFSET设置为20，会得到什么结果呢？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- OFFSET设定为20</span></span><br><span class="line"><span class="keyword">SELECT</span> id, name, gender, score</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> score <span class="keyword">DESC</span></span><br><span class="line">LIMIT <span class="number">3</span> <span class="keyword">OFFSET</span> <span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 结果</span></span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">result</span> <span class="keyword">set</span></span><br></pre></td></tr></table></figure>
+<p>OFFSET超过了查询的最大数量并不会报错，而是得到一个空的结果集。</p>
+<p><strong>注意</strong></p>
+<p><code>OFFSET</code>是可选的，如果只写<code>LIMIT 15</code>，那么相当于<code>LIMIT 15 OFFSET 0</code>。</p>
+<p>在<code>MySQL</code>中，<code>LIMIT 15 OFFSET 30</code>还可以简写成<code>LIMIT 30 15</code>。</p>
+<p>可以使用<code>count(*)</code>查询数据条数:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">count</span>(<span class="operator">*</span>id<span class="operator">*</span>) <span class="keyword">FROM</span> students;</span><br></pre></td></tr></table></figure>
+<p><code>COUNT()</code>函数返回匹配指定条件的行数:</p>
+<ul>
+<li>COUNT(column_name) 函数返回指定列的值的数目（NULL 不计入）：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(column_name) <span class="keyword">FROM</span> table_name</span><br></pre></td></tr></table></figure></li>
+<li>COUNT(*) 函数返回表中的记录数：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> table_name</span><br></pre></td></tr></table></figure></li>
+<li>COUNT(DISTINCT column_name) 函数返回指定列的不同值的数目：<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="keyword">DISTINCT</span> column_name) <span class="keyword">FROM</span> table_name</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 注：COUNT(DISTINCT) 适用于 ORACLE 和 Microsoft SQL Server，但是无法用于 Microsoft Access。</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h2><p>如果我们要统计一张表的数据量，例如统计总数、平均数这类计算，SQL提供了专门的聚合函数，使用聚合函数进行查询，就是聚合查询，它可以快速获得结果。</p>
+<p>仍然以查询students表一共有多少条记录为例，我们可以使用SQL内置的COUNT()函数查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用聚合查询:</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> students;</span><br></pre></td></tr></table></figure>
+<p><code>COUNT(*)</code>表示查询所有列的行数，要注意聚合的计算结果虽然是一个数字，但查询的结果仍然是一个二维表，只是这个二维表只有一行一列，并且列名是<code>COUNT(*)</code>。</p>
+<p>通常，使用聚合查询时，我们应该给列名设置一个别名，便于处理结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用聚合查询并设置结果集的列名为num:</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students;</span><br></pre></td></tr></table></figure>
+<p><code>COUNT(*)</code>和<code>COUNT(id)</code>实际上是一样的效果。另外注意，聚合查询同样可以使用WHERE条件，因此我们可以方便地统计出有多少男生、多少女生、多少80分以上的学生等：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用聚合查询并设置WHERE条件:</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) boys <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>除了<code>COUNT()</code>函数外，SQL还提供了如下聚合函数：<br>| 函数  |   说明   |<br>| :—-: | :—-: |<br>| SUM | 计算某一列的合计值，该列必须为数值类型 |<br>| AVG | 计算某一列的平均值，该列必须为数值类型 |<br>| MAX | 计算某一列的最大值 |<br>| MIN | 计算某一列的最小值 |<br>注意，<code>MAX()</code>和<code>MIN()</code>函数并不限于数值类型。如果是字符类型，<code>MAX()</code>和<code>MIN()</code>会返回排序最后和排序最前的字符。</p>
+<p>要统计男生的平均成绩，我们用下面的聚合查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用聚合查询计算男生平均成绩:</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(score) average <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>要特别注意：如果聚合查询的WHERE条件没有匹配到任何行，<code>COUNT()</code>会返回0，而<code>MAX()</code>、<code>MIN()</code>、<code>MAX()</code>和<code>MIN()</code>会返回<code>NULL</code>;</p>
+<p><strong>分组</strong></p>
+<p>如果我们要统计一班的学生数量，我们知道，可以用<code>SELECT COUNT(*) num FROM students WHERE class_id = 1;</code>。如果要继续统计二班、三班的学生数量，难道必须不断修改WHERE条件来执行SELECT语句吗？</p>
+<p>对于聚合查询，SQL还提供了“分组聚合”的功能。我们观察下面的聚合查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按class_id分组:</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id;</span><br></pre></td></tr></table></figure>
+<p>执行这个查询，<code>COUNT()</code>的结果不再是一个，而是3个，这是因为，<code>GROUP BY</code>子句指定了按<code>class_id</code>分组，因此，执行该SELECT语句时，会把c<code>lass_id</code>相同的列先分组，再分别计算，因此，得到了3行结果。</p>
+<p>但是这3行结果分别是哪三个班级的，不好看出来，所以我们可以把class_id列也放入结果集中：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按class_id分组:</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id;</span><br></pre></td></tr></table></figure>
+<p>这下结果集就可以一目了然地看出各个班级的学生人数。我们再试试把name放入结果集：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按class_id分组:</span></span><br><span class="line"><span class="keyword">SELECT</span> name, class_id, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id;</span><br></pre></td></tr></table></figure>
+<p>不出意外，执行这条查询我们会得到一个语法错误，因为在任意一个分组中，只有class_id都相同，name是不同的，SQL引擎不能把多个name的值放入一行记录中。因此，聚合查询的列中，只能放入分组的列。</p>
+<p>也可以使用多个列进行分组。例如，我们想统计各班的男生和女生人数：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按class_id, gender分组:</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, gender, <span class="built_in">COUNT</span>(<span class="operator">*</span>) num <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id, gender;</span><br></pre></td></tr></table></figure>
+<p>上述查询结果集一共有6条记录，分别对应各班级的男生和女生人数。</p>
+<p><strong>练习</strong><br>请使用一条SELECT查询查出每个班级的平均分：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查出每个班级的平均分，结果集应当有3条记录:</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, <span class="built_in">AVG</span>(score) <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id ;</span><br></pre></td></tr></table></figure>
+<p>请使用一条SELECT查询查出每个班级男生和女生的平均分：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查出每个班级的平均分，结果集应当有6条记录:</span></span><br><span class="line"><span class="keyword">SELECT</span> class_id, gender, <span class="built_in">AVG</span>(score) <span class="keyword">FROM</span> students <span class="keyword">GROUP</span> <span class="keyword">BY</span> class_id, gender;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><p>SELECT查询不但可以从一张表查询数据，还可以从多张表同时查询数据。查询多张表的语法是：<code>SELECT * FROM &lt;表1&gt; &lt;表2&gt;</code>。</p>
+<p>例如，同时从students表和classes表的“乘积”，即查询数据，可以这么写：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students, classes;</span><br></pre></td></tr></table></figure>
+
+<p>这种一次查询两个表的数据，查询的结果也是一个二维表，它是students表和classes表的“乘积”，即students表的每一行与classes表的每一行都两两拼在一起返回。结果集的列数是students表和classes表的列数之和，行数是students表和classes表的行数之积。</p>
+<p>这种多表查询又称笛卡尔查询，<strong>使用笛卡尔查询时要非常小心</strong>，由于结果集是目标表的行数乘积，对两个各自有100行记录的表进行笛卡尔查询将返回1万条记录，对两个各自有1万行记录的表进行笛卡尔查询将返回1亿条记录。</p>
+<p>你可能还注意到了，上述查询的结果集有两列id和两列name，两列id是因为其中一列是students表的id，而另一列是classes表的id，但是在结果集中，不好区分。两列name同理</p>
+<p>要解决这个问题，我们仍然可以利用投影查询的“设置列的别名”来给两个表各自的id和name列起别名：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- set alias:</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    students.id sid,</span><br><span class="line">    students.name,</span><br><span class="line">    students.gender,</span><br><span class="line">    students.score,</span><br><span class="line">    classes.id cid,</span><br><span class="line">    classes.name cname</span><br><span class="line"><span class="keyword">FROM</span> students, classes;</span><br></pre></td></tr></table></figure>
+<p>注意，多表查询时，要使用表名.列名这样的方式来引用列和设置别名，这样就避免了结果集的列名重复问题。但是，用表名.列名这种方式列举两个表的所有列实在是很麻烦，所以SQL还允许给表设置一个别名，让我们在投影查询中引用起来稍微简洁一点：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- set table alias:</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    s.id sid,</span><br><span class="line">    s.name,</span><br><span class="line">    s.gender,</span><br><span class="line">    s.score,</span><br><span class="line">    c.id cid,</span><br><span class="line">    c.name cname</span><br><span class="line"><span class="keyword">FROM</span> students s, classes c;</span><br></pre></td></tr></table></figure>
+
+<p>注意到FROM子句给表设置别名的语法是<code>FROM &lt;表名1&gt; &lt;别名1&gt;, &lt;表名2&gt; &lt;别名2&gt;</code>。这样我们用别名s和c分别表示students表和classes表。</p>
+<p>多表查询也是可以添加WHERE条件的：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- set where clause:</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    s.id sid,</span><br><span class="line">    s.name,</span><br><span class="line">    s.gender,</span><br><span class="line">    s.score,</span><br><span class="line">    c.id cid,</span><br><span class="line">    c.name cname</span><br><span class="line"><span class="keyword">FROM</span> students s, classes c</span><br><span class="line"><span class="keyword">WHERE</span> s.gender <span class="operator">=</span> <span class="string">&#x27;M&#x27;</span> <span class="keyword">AND</span> c.id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>这个查询的结果集每行记录都满足条件s.gender = ‘M’和c.id = 1。添加WHERE条件后结果集的数量大大减少了。</p>
+<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><p>连接查询是另一种类型的多表查询。连接查询对多个表进行JOIN运算，简单地说，就是先确定一个主表作为结果集，然后，把其他表的行有选择性地“连接”在主表结果集上。</p>
+<p>例如，我们想要选出students表的所有学生信息，可以用一条简单的SELECT语句完成：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> s.id, s.name, s.class_id, s.gender, s.score <span class="keyword">FROM</span> students s;</span><br></pre></td></tr></table></figure>
+
+<p>但是，假设我们希望结果集同时包含所在班级的名称，上面的结果集只有class_id列，缺少对应班级的name列。</p>
+<p>现在问题来了，存放班级名称的name列存储在classes表中，只有根据students表的class_id，找到classes表对应的行，再取出name列，就可以获得班级名称。</p>
+<p>这时，连接查询就派上了用场。我们先使用最常用的一种内连接——<code>INNER JOIN</code>来实现：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 选出所有学生，同时返回班级名称</span></span><br><span class="line"><span class="keyword">SELECT</span> s.id, s.name, s.class_id, c.name class_name, s.gender, s.score</span><br><span class="line"><span class="keyword">FROM</span> students s</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> classes c</span><br><span class="line"><span class="keyword">ON</span> s.class_id <span class="operator">=</span> c.id;</span><br></pre></td></tr></table></figure>
+<p>注意INNER JOIN查询的写法是：</p>
+<ol>
+<li>先确定主表，仍然使用<code>FROM &lt;表1&gt;</code>的语法；</li>
+<li>再确定需要连接的表，使用<code>INNER JOIN &lt;表2&gt;</code>的语法；</li>
+<li>然后确定连接条件，使用<code>ON &lt;条件...&gt;</code>，这里的条件是<code>s.class_id = c.id</code>，表示students表的class_id列与classes表的id列相同的行需要连接；</li>
+<li>可选：加上<code>WHERE</code>子句、<code>ORDER BY</code>等子句。<br>使用别名不是必须的，但可以更好地简化查询语句。</li>
+</ol>
+<ul>
+<li>外连接（OUTER JOIN）</li>
+</ul>
+<p>执行上述<code>RIGHT OUTER JOIN</code>可以看到，和<code>INNER JOIN</code>相比，<code>RIGHT OUTER JOIN</code>多了一行，多出来的一行是“四班”，但是，学生相关的列如name、gender、score都为NULL。</p>
+<p>这也容易理解，因为根据ON条件s.class_id = c.id，classes表的id=4的行正是“四班”，但是，students表中并不存在class_id=4的行。</p>
+<p>有<code>RIGHT OUTER JOIN</code>，就有<code>LEFT OUTER JOIN</code>，以及<code>FULL OUTER JOIN</code>。它们的区别是：</p>
+<ul>
+<li><code>INNER JOIN</code>只返回同时存在于两张表的行数据，由于students表的class_id包含1，2，3，classes表的id包含1，2，3，4，所以，<code>INNER JOIN</code>根据条件<code>s.class_id = c.id</code>返回的结果集仅包含1，2，3。</li>
+<li><code>RIGHT OUTER JOIN</code>返回右表都存在的行。如果某一行仅在右表存在，那么结果集就会以NULL填充剩下的字段。</li>
+<li><code>LEFT OUTER JOIN</code>则返回左表都存在的行。如果我们给students表增加一列，并添加<code>class_id=5</code>，由于classes表并不存在id=5的列，所以，<code>LEFT OUTER JOIN</code>的结果会增加一列，对应的<code>class_name</code>是<code>NULL</code>。</li>
+<li><code>FULL OUTER JOIN</code>，它会把两张表的所有记录全部选择出来，并且，自动把对方不存在的列填充为<code>NULL</code>：</li>
+</ul>
+<p>对于这么多种JOIN查询，到底什么使用应该用哪种呢？其实我们用图来表示结果集就一目了然了。</p>
+<p>假设查询语句是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> tableA ??? <span class="keyword">JOIN</span> tableB <span class="keyword">ON</span> tableA.column1 <span class="operator">=</span> tableB.column2;</span><br></pre></td></tr></table></figure>
+<p>我们把tableA看作左表，把tableB看成右表，那么<code>INNER JOIN</code>是选出两张表都存在的记录：</p>
+<p><img src="/imgs/sql/sql_1.png" alt="An image"></p>
+<p><code>LEFT OUTER JOIN</code>是选出左表存在的记录：</p>
+<p><img src="/imgs/sql/sql_2.png" alt="An image"></p>
+<p><code>RIGHT OUTER JOIN</code>是选出右表存在的记录：</p>
+<p><img src="/imgs/sql/sql_3.png" alt="An image"></p>
+<p><code>FULL OUTER JOIN</code>则是选出左右表都存在的记录：</p>
+<p><img src="/imgs/sql/sql_4.png" alt="An image"></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>SQL(2)</p><p><a href="https://veenveenveen.github.io/exclude/Database/sql_1.html">https://veenveenveen.github.io/exclude/Database/sql_1.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>吃饭不加糖</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-03-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-03-27</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "0da1f3f97229e707f69841ab11874776",
+            repo: "blog-comment",
+            owner: "veenveenveen",
+            clientID: "8a8a5cfb4f25dde27559",
+            clientSecret: "29dd11c138a6cb7db9354ab35dfddd050771ae56",
+            admin: ["veenveenveen"],
+            createIssueManually: true,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.png" alt="吃饭不加糖"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">吃饭不加糖</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Shanghai, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">6</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/veenveenveen" target="_blank" rel="noopener">关注我</a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://www.jianshu.com/u/d7aaaaea4e27" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">简书</span></span><span class="level-right"><span class="level-item tag">www.jianshu.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%88%9B%E5%BB%BA-%E9%83%A8%E7%BD%B2/"><span class="level-start"><span class="level-item">创建 &amp; 部署</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/ASR/"><span class="tag">ASR</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Flutter/"><span class="tag">Flutter</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/VuePress/"><span class="tag">VuePress</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gitalk/"><span class="tag">gitalk</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">2</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-27T02:35:32.000Z">2021-03-27</time></p><p class="title"><a href="/2021/03/27/gitalk%E9%85%8D%E7%BD%AE%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/">hexo gitalk配置出现的问题</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/03/26/My-New-Post/"><img src="/images/avatar.png" alt="My New Post"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-03-26T08:40:00.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/My-New-Post/">My New Post</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T08:40:00.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/hexo_command/">Hexo 常用命令</a></p><p class="categories"><a href="/categories/%E5%88%9B%E5%BB%BA-%E9%83%A8%E7%BD%B2/">创建 &amp; 部署</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T07:10:08.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/ASR/ASR_HTK_Chinese/">基于HTK开源框架的汉语语音识别 (GMM-HMM)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T07:10:08.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/ASR/ASR_Kaldi_DNN_Chinese/">基于Kaldi（DNN）的小词汇量汉语语音识别平台搭建</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.png" alt="吃饭不加糖" height="28"></a><p class="is-size-7"><span>&copy; 2021 吃饭不加糖</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

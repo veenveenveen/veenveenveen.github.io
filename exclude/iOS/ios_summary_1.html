@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>iOS知识点总结（一） - 吃饭不加糖</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="吃饭不加糖"><meta name="msapplication-TileImage" content="/images/avatar.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="吃饭不加糖"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="iOS知识点总结（一）目录[[toc]] 多线程中的通知操作在多线程程序中，通知总是在发送通知者的线程中调用 ( 通知观察者的被调函数总是运行在发送通知者的线程中 )。通知的被调函数不一定运行在主线程中，如果需要做UI相关操作，需要手动切换到主线程。 OC中创建线程的方法1. NSThread 12[NSThread detachNewThreadSelector:toTarget:withObj"><meta property="og:type" content="blog"><meta property="og:title" content="iOS知识点总结（一）"><meta property="og:url" content="https://veenveenveen.github.io/exclude/iOS/ios_summary_1.html"><meta property="og:site_name" content="吃饭不加糖"><meta property="og:description" content="iOS知识点总结（一）目录[[toc]] 多线程中的通知操作在多线程程序中，通知总是在发送通知者的线程中调用 ( 通知观察者的被调函数总是运行在发送通知者的线程中 )。通知的被调函数不一定运行在主线程中，如果需要做UI相关操作，需要手动切换到主线程。 OC中创建线程的方法1. NSThread 12[NSThread detachNewThreadSelector:toTarget:withObj"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://veenveenveen.github.io/img/og_image.png"><meta property="article:published_time" content="2021-03-26T07:10:08.000Z"><meta property="article:modified_time" content="2021-03-27T05:45:14.821Z"><meta property="article:author" content="吃饭不加糖"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://veenveenveen.github.io/exclude/iOS/ios_summary_1.html"},"headline":"iOS知识点总结（一）","image":["https://veenveenveen.github.io/img/og_image.png"],"datePublished":"2021-03-26T07:10:08.000Z","dateModified":"2021-03-27T05:45:14.821Z","author":{"@type":"Person","name":"吃饭不加糖"},"description":"iOS知识点总结（一）目录[[toc]] 多线程中的通知操作在多线程程序中，通知总是在发送通知者的线程中调用 ( 通知观察者的被调函数总是运行在发送通知者的线程中 )。通知的被调函数不一定运行在主线程中，如果需要做UI相关操作，需要手动切换到主线程。 OC中创建线程的方法1. NSThread 12[NSThread detachNewThreadSelector:toTarget:withObj"}</script><link rel="canonical" href="https://veenveenveen.github.io/exclude/iOS/ios_summary_1.html"><link rel="icon" href="/images/avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.png" alt="吃饭不加糖" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">iOS知识点总结（一）</h1><div class="content"><h1 id="iOS知识点总结（一）"><a href="#iOS知识点总结（一）" class="headerlink" title="iOS知识点总结（一）"></a>iOS知识点总结（一）</h1><p>目录<br>[[toc]]</p>
+<h2 id="多线程中的通知操作"><a href="#多线程中的通知操作" class="headerlink" title="多线程中的通知操作"></a>多线程中的通知操作</h2><p>在多线程程序中，通知总是在发送通知者的线程中调用 ( 通知观察者的被调函数总是运行在发送通知者的线程中 )。<br>通知的被调函数不一定运行在主线程中，如果需要做UI相关操作，需要手动切换到主线程。</p>
+<h2 id="OC中创建线程的方法"><a href="#OC中创建线程的方法" class="headerlink" title="OC中创建线程的方法"></a>OC中创建线程的方法</h2><p><strong>1. NSThread</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[NSThread detachNewThreadSelector:toTarget:withObject];</span><br><span class="line">[NSThread alloc] initWithTarget:selector:object];  -&gt; [thread start];</span><br></pre></td></tr></table></figure>
+<p>这两种方式的区别是：前一种一调用就会立即创建一个线程来做事情；而后一种虽然你 alloc 了也 init了，但是要直到我们手动调用 start 启动线程时才会真正去创建线程。</p>
+<p>NSObject方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span> performSelectorOnBackground:withObject];</span><br></pre></td></tr></table></figure>
+<p><strong>2. GCD</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dispath_async(dispatch_get_global_queue(<span class="number">0</span>,<span class="number">0</span>),<span class="operator">^</span>&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>3. NSOperation</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[[<span class="type">NSOperationQueue</span> alloc] <span class="keyword">init</span>] addOperation:];</span><br></pre></td></tr></table></figure>
+<p><strong>主线程中执行代码的方法</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">① [<span class="keyword">self</span> performSelectorOnMainThread:withObject:];</span><br><span class="line">② dispatch_async(dispatch_get_main_queue(),<span class="operator">^</span>&#123;&#125;);</span><br><span class="line">③ [[<span class="type">NSOperation</span> mainQueue] addOperation:]; </span><br></pre></td></tr></table></figure>
+
+<h2 id="OC反射机制"><a href="#OC反射机制" class="headerlink" title="OC反射机制"></a>OC反射机制</h2><p><strong>定义:</strong><br>运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法；这种动态获取属性以及动态调用对象的方法的功能就是反射机制.</p>
+<p><code>获取class，检查继承关系，动态的调用方法</code></p>
+<p>Class对象的获取：Class对象的本质是一个结构体，这个结构体中的成员变量还是自己。使用<code>[self class]</code> 或者使用<code>[类名 class]</code></p>
+<p>系统Foundation框架提供了一些方法反射的API，可以通过这些API将字符串转化为SEL、class、protocol等，由于OC语言的动态性，这些操作都发生在运行时</p>
+<p><strong>反射方法：</strong></p>
+<ul>
+<li>SEL<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SEL</span> <span class="operator">*</span>selector <span class="operator">=</span> <span class="type">NSSelectorFromString</span>(@“setName”);</span><br><span class="line">[obj performSelector: selector withObject:@“<span class="type">Himin</span>”];(objc_msgSend)</span><br><span class="line"><span class="type">NSStringFromSelector</span>(<span class="meta">@selector</span>(setName:))</span><br></pre></td></tr></table></figure></li>
+<li>Class<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">NSString</span> <span class="operator">*</span><span class="type">NSStringFromClass</span>(<span class="type">Class</span> aClass);</span><br><span class="line"><span class="type">Class</span> <span class="operator">*</span><span class="type">NSClassFromString</span>(<span class="type">NSString</span> <span class="operator">*</span>aClassName);</span><br></pre></td></tr></table></figure>
+Protocol<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">NSString</span> <span class="operator">*</span><span class="type">NSStringFromProtocol</span>(<span class="type">Protocol</span> <span class="operator">*</span>proto);</span><br><span class="line"><span class="type">Protocol</span> <span class="operator">*</span><span class="type">NSProtocolFromString</span>(<span class="type">NSString</span> <span class="operator">*</span>namestr);</span><br></pre></td></tr></table></figure>
+常用的判断方法：<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">isKindOfClass</span><br><span class="line">isMemberOfClass</span><br><span class="line">confirmToProtocol</span><br><span class="line">respondsToSelector</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前对象是否这个类或其子类的实例 </span></span><br><span class="line"><span class="operator">-</span> (<span class="type">BOOL</span>)isKindOfClass:(<span class="type">Class</span>)aClass; </span><br><span class="line"><span class="comment">// 当前对象是否是这个类的实例 </span></span><br><span class="line"><span class="operator">-</span> (<span class="type">BOOL</span>)isMemberOfClass:(<span class="type">Class</span>)aClass; </span><br><span class="line"><span class="comment">// 当前对象是否遵守这个协议 </span></span><br><span class="line"><span class="operator">-</span> (<span class="type">BOOL</span>)conformsToProtocol:(<span class="type">Protocol</span> <span class="operator">*</span>)aProtocol; </span><br><span class="line"><span class="comment">// 当前对象是否实现这个方法 </span></span><br><span class="line"><span class="operator">-</span> (<span class="type">BOOL</span>)respondsToSelector:(<span class="type">SEL</span>)aSelector;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Swift-static和class"><a href="#Swift-static和class" class="headerlink" title="Swift static和class"></a>Swift static和class</h2><p>声明一个静态属性或者函数，你可以使用关键字static来修饰值类型。以下是一个结构体的例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sun</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">illuminate</span>()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于类来说，你可以使用static或者class修饰符。虽然它们完成同样的功能，但实际上是不同的。你能解释一下它们之间有什么不同吗？<br>答案:<br>使用static关键字，静态属性和静态函数是不能被重写的，但当使用class关键字，你可以重写属性和函数。其实，对于类来说，static关键字是class final的别名而已。例如，你编译下面这些code时，当你要重写illuminate()函数时，编译器提示错误：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Star</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">spin</span>() </span>&#123;&#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">illuminate</span>()</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sun</span> : <span class="title">Star</span> </span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">spin</span>() </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.spin()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">illuminate</span>()</span> &#123; <span class="comment">// error: class method overrides a &#x27;final&#x27; class method</span></span><br><span class="line">    <span class="keyword">super</span>.illuminate()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="iOS-instancetype和id的区别"><a href="#iOS-instancetype和id的区别" class="headerlink" title="iOS instancetype和id的区别"></a>iOS instancetype和id的区别</h2><ul>
+<li>instancetype在类型表示上，跟id一样，可以表示任何对象类型</li>
+<li>instancetype只能用在返回值类型上，不能像id一样用在参数类型上</li>
+<li>instancetype比id多一个好处：编译器会检测instancetype的真实类型</li>
+</ul>
+<h2 id="loadView-与-viewDidLoad"><a href="#loadView-与-viewDidLoad" class="headerlink" title="loadView 与 viewDidLoad"></a>loadView 与 viewDidLoad</h2><p><strong>loadView</strong></p>
+<blockquote>
+<p>当用到控制器view时，会调用控制器view的get方法，首先判断view是否已被创建，如果存在直接返回，不存在则调用loadview方法创建</p>
+</blockquote>
+<p><strong>viewDidLoad</strong></p>
+<blockquote>
+<p>当控制器的loadview执行完毕，view被创建成功后会调用viewDidLoad方法</p>
+</blockquote>
+<p><strong>loadView 与 viewDidLoad在控制器未被销毁的情况下可能会被执行多次：</strong></p>
+<blockquote>
+<p>比如A控制器push出B控制器，此时显示的是B控制器的view,若在此时收到内存警告，一般会销毁掉A控制器中一些无用的变量以及view,当B控制器pop到A控制器的时候，会重新调用A控制器的loadView和viewDidLoad方法</p>
+</blockquote>
+<p><strong>补充:</strong></p>
+<blockquote>
+<p>① storyboard加载的是控制器以及控制器的view,而xib加载的仅仅是控制器的view</p>
+<p>② 控制器view的生命周期<br>viewDidLoad -&gt; viewWillAppear -&gt; viewWillLayoutSubviews -&gt; viewDidLayoutSubviews -&gt; viewDidAppear-&gt; viewWillDisappear -&gt; viewDidDisappear</p>
+<p>③ 内存警告传递过程<br>手机内存不足产生事件 -&gt; 通知应用程序 -&gt; 调用应用程序代理方法 -&gt; 把事件传递给窗口 -&gt; 窗口传递给控制器 -&gt; 调用控制器的内存警告方法</p>
+<p>④ xib描述控制器view时，其File’s Owner为对应的控制器，当通过xib自定义view或自定义cell时，File’s Owner不能填写自定义view或者cell的类名</p>
+</blockquote>
+<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b9f020a8b4c9">KVC</a></h2><p>通过key值直接访问对象的属性，或者给对象的属性赋值，而不需要明确的调用存取方法。可以在运行时动态的访问和修改对象的属性，而不是在编译时确定</p>
+<ul>
+<li>动态的取值和设值</li>
+<li>使用KVC来访问和修改私有变量</li>
+<li>Model和字典转换</li>
+<li>修改一些控件的内部属性，如：<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// placeholderLabel的颜色以及字体大小：</span></span><br><span class="line"><span class="keyword">static</span> <span class="type">NSString</span> <span class="operator">*</span> const <span class="type">WDDPlaceholderColorkeyPath</span> <span class="operator">=</span> @<span class="string">&quot;_placeholderLabel.textColor&quot;</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="type">NSString</span> <span class="operator">*</span> const <span class="type">WDDPlaceholderFontPath</span> <span class="operator">=</span> @<span class="string">&quot;_placeholderLabel.font&quot;</span>;</span><br><span class="line">[<span class="keyword">self</span> setValue:<span class="keyword">self</span>.placeholderHighlightedFont forKeyPath:<span class="type">WDDPlaceholderFontPath</span>];</span><br></pre></td></tr></table></figure></li>
+<li>操作集合</li>
+<li>用KVC实现高阶消息传递</li>
+<li>实现KVO</li>
+</ul>
+<h2 id="UIButton文字居左显示"><a href="#UIButton文字居左显示" class="headerlink" title="UIButton文字居左显示"></a>UIButton文字居左显示</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// how to position content hozontally inside control. default is center</span></span><br><span class="line"><span class="meta">@property</span>(nonatomic) <span class="type">UIControlContentHorizontalAlignment</span> contentHorizontalAlignment; </span><br><span class="line">typedef <span class="type">NS_ENUM</span>(<span class="type">NSInteger</span>, <span class="type">UIControlContentHorizontalAlignment</span>) &#123;</span><br><span class="line">    <span class="type">UIControlContentHorizontalAlignmentCenter</span> <span class="operator">=</span> <span class="number">0</span>,</span><br><span class="line">    <span class="type">UIControlContentHorizontalAlignmentLeft</span>   <span class="operator">=</span> <span class="number">1</span>, </span><br><span class="line">    <span class="type">UIControlContentHorizontalAlignmentRight</span>  <span class="operator">=</span> <span class="number">2</span>, </span><br><span class="line">    <span class="type">UIControlContentHorizontalAlignmentFill</span>   <span class="operator">=</span> <span class="number">3</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 设置contentHorizontalAlignment</span></span><br><span class="line">button.contentHorizontalAlignment <span class="operator">=</span> <span class="type">UIControlContentHorizontalAlignmentLeft</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果感觉太靠边了，可以设置UIButton的titleEdgeInsets属性，这样button的title就距左边10个像素的距离。</span></span><br><span class="line">button.titleEdgeInsets <span class="operator">=</span> <span class="type">UIEdgeInsetsMake</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 居右显示：</span></span><br><span class="line">button.contentHorizontalAlignment <span class="operator">=</span> <span class="type">UIControlContentHorizontalAlignmentRight</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="http请求几种方式"><a href="#http请求几种方式" class="headerlink" title="http请求几种方式"></a>http请求几种方式</h2><ol>
+<li><code>HEAD</code> 向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息。</li>
+<li><code>GET</code> 向特定的资源发出请求。注意：GET方法不应当被用于产生“副作用”的操作中，例如在web app.中。其中一个原因是GET可能会被网络蜘蛛等随意访问。　</li>
+<li><code>POST</code> 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。　</li>
+<li><code>PUT</code> 向指定资源位置上传其最新内容。　</li>
+<li><code>DELETE</code> 请求服务器删除Request-URI所标识的资源。　</li>
+<li><code>TRACE</code> 回显服务器收到的请求，主要用于测试或诊断。　</li>
+<li><code>CONNECT</code> HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</li>
+<li><code>OPTIONS</code> 返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。<h2 id="ios-多线程——原子、非原子，自旋锁和互斥锁"><a href="#ios-多线程——原子、非原子，自旋锁和互斥锁" class="headerlink" title="ios 多线程——原子、非原子，自旋锁和互斥锁"></a>ios 多线程——原子、非原子，自旋锁和互斥锁</h2></li>
+</ol>
+<p><strong>atomic 和 nonatomic</strong></p>
+<blockquote>
+<p>nonatomic：非原子属性，线程不安全的，效率高。</p>
+<p>atomic：原子属性，线程安全的，效率相对低。</p>
+<p>原子属性是一种单(线程)写多(线程)读的多线程技术。</p>
+<p>atomic属性内部的锁称为自旋锁，凡是线程安全的对象，内部肯定会加锁。</p>
+</blockquote>
+<p><strong>自旋锁和互斥锁</strong></p>
+<ul>
+<li><p>相同点</p>
+<blockquote>
+<p>都能保证同一时间只有一个线程访问共享资源。都能保证线程安全。</p>
+</blockquote>
+</li>
+<li><p>不同点</p>
+<blockquote>
+<p>互斥锁：如果共享数据已经有其他线程加锁了，线程会进入休眠状态等待锁。一旦被访问的资源被解锁，则等待资源的线程会被唤醒。</p>
+<p>自旋锁：如果共享数据已经有其他线程加锁了，线程会以死循环的方式等待锁，一旦被访问的资源被解锁，则等待资源的线程会立即执行。</p>
+<p>（ 自旋锁的效率高于互斥锁 ）</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="iOS-多线程解决方案"><a href="#iOS-多线程解决方案" class="headerlink" title="iOS 多线程解决方案"></a>iOS 多线程解决方案</h2><p>pthread，NSThread，GCD，NSOperation</p>
+<h2 id="RunLoop"><a href="#RunLoop" class="headerlink" title="RunLoop"></a>RunLoop</h2><p>系统默认注册了5个mode</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kCFRunLoopDefaultMode <span class="comment">//App的默认Mode，通常主线程是在这个Mode下运行   </span></span><br><span class="line"><span class="type">UITrackingRunLoopMode</span> <span class="comment">//界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响</span></span><br><span class="line"><span class="type">UIInitializationRunLoopMode</span> <span class="comment">// 在刚启动 App 时第进入的第一个 Mode，启动完成后就不再使用</span></span><br><span class="line"><span class="type">GSEventReceiveRunLoopMode</span> <span class="comment">// 接受系统事件的内部 Mode，通常用不到</span></span><br><span class="line">kCFRunLoopCommonModes <span class="comment">//这是一个占位用的Mode，不是一种真正的Mode</span></span><br></pre></td></tr></table></figure>
+<h2 id="View和Layer"><a href="#View和Layer" class="headerlink" title="View和Layer"></a>View和Layer</h2><p><code>UIView</code> 主要是对显示内容的管理，可以响应事件</p>
+<p><code>CALayer</code> 主要侧重显示内容的绘制，不能响应事件</p>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><ul>
+<li>循环引用：delegate,block,NSTimer</li>
+<li>非OC对象的处理</li>
+<li>地图相关类：使用完毕时将地图、代理等滞空为nil，注意地图中标注（大头针）的复用，并且在使用完毕时清空标注数组</li>
+<li>大次数循环内存暴涨</li>
+</ul>
+<h2 id="内存管理之引用计数式内存管理的思考方式"><a href="#内存管理之引用计数式内存管理的思考方式" class="headerlink" title="内存管理之引用计数式内存管理的思考方式"></a>内存管理之引用计数式内存管理的思考方式</h2><p>① 自己生成的对象，自己所持有<br>② 非自己生成的对象，自己也能持有<br>③ 不再需要自己持有的对象时释放<br>④ 非自己持有的对象自己不能释放</p>
+<h2 id="iOS核心动画keypath"><a href="#iOS核心动画keypath" class="headerlink" title="iOS核心动画keypath"></a>iOS核心动画keypath</h2><blockquote>
+<p>transform.rotation：旋转动画</p>
+<p>transform.rotation.x：按x轴旋转动画</p>
+<p>transform.rotation.y：按y轴旋转动画</p>
+<p>transform.rotation.z：按z轴旋转动画</p>
+<p>transform.scale：按比例放大缩小动画</p>
+<p>transform.scale.x：在x轴按比例放大缩小动画</p>
+<p>transform.scale.y：在y轴按比例放大缩小动画</p>
+<p>transform.scale.z：在z轴按比例放大缩小动画</p>
+<p>position：移动位置动画</p>
+<p>opacity：透明度动画</p>
+<p>strokeEnd :颜色从无到有</p>
+<p>strokeStart :颜色从有到无</p>
+</blockquote>
+<h2 id="总结一下什么时候会触发layoutSubviews"><a href="#总结一下什么时候会触发layoutSubviews" class="headerlink" title="总结一下什么时候会触发layoutSubviews"></a>总结一下什么时候会触发layoutSubviews</h2><ol>
+<li>init初始化不会触发layoutSubviews</li>
+<li>addSubview会触发layoutSubviews</li>
+<li>设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化</li>
+<li>滚动一个UIScrollView会触发layoutSubviews</li>
+<li>旋转Screen会触发父UIView上的layoutSubviews事件</li>
+<li>改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</li>
+</ol>
+<h2 id="AFNetworking的大体结构"><a href="#AFNetworking的大体结构" class="headerlink" title="AFNetworking的大体结构"></a>AFNetworking的大体结构</h2><ol>
+<li>我们封装一个网络框架，首先需要一个类来检测当前网络环境（AFNetworkReachabilityManager）:AFN提供了四种网络状态–未知、蜂窝、wifi、无网络。如果网络环境发生了改变，需要及时进行通知。 </li>
+<li>我们需要封装一个类来提供安全策略（AFSecurityPolicy）：AFN提供了三种安全策略–公钥、证书、无。 </li>
+<li>我们需要封装一个类来提供请求序列化（AFURLRequestSerialization）：缓存策略、cookie使用、超时时间、请求头处理等，并根据不同条件返回请求实例。 </li>
+<li>我们需要封装一个类来提供响应序列化(AFURLResponseSerialization)：可接受的状态码、可接受的Content-Type类型、是否有效的响应，实例化响应实例。处理json、xml和其他潜在类型的类。 </li>
+<li>我们需要封装一个类(AFURLSessionManager)，将上面的四个类进行应用，并提供网络会话及相关操作。 </li>
+<li>为了更好的进行HTTP的细节处理，提供子类(AFHTTPSessionManager)，分别用来处理GET、POST、HEAD、PUT、PATCH、DELET方法。</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>iOS知识点总结（一）</p><p><a href="https://veenveenveen.github.io/exclude/iOS/ios_summary_1.html">https://veenveenveen.github.io/exclude/iOS/ios_summary_1.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>吃饭不加糖</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-03-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-03-27</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "bdbb19b8f608dc264f87cbdf137ba78e",
+            repo: "blog-comment",
+            owner: "veenveenveen",
+            clientID: "8a8a5cfb4f25dde27559",
+            clientSecret: "29dd11c138a6cb7db9354ab35dfddd050771ae56",
+            admin: ["veenveenveen"],
+            createIssueManually: true,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            proxy: "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token",
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.png" alt="吃饭不加糖"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">吃饭不加糖</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Shanghai, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">6</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/veenveenveen" target="_blank" rel="noopener">关注我</a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://www.jianshu.com/u/d7aaaaea4e27" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">简书</span></span><span class="level-right"><span class="level-item tag">www.jianshu.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%88%9B%E5%BB%BA-%E9%83%A8%E7%BD%B2/"><span class="level-start"><span class="level-item">创建 &amp; 部署</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/ASR/"><span class="tag">ASR</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Flutter/"><span class="tag">Flutter</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/VuePress/"><span class="tag">VuePress</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gitalk/"><span class="tag">gitalk</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag">2</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-27T02:35:32.000Z">2021-03-27</time></p><p class="title"><a href="/2021/03/27/gitalk%E9%85%8D%E7%BD%AE%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/">hexo gitalk配置出现的问题</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/03/26/My-New-Post/"><img src="/images/avatar.png" alt="My New Post"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-03-26T08:40:00.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/My-New-Post/">My New Post</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T08:40:00.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/hexo_command/">Hexo 常用命令</a></p><p class="categories"><a href="/categories/%E5%88%9B%E5%BB%BA-%E9%83%A8%E7%BD%B2/">创建 &amp; 部署</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T07:10:08.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/ASR/ASR_HTK_Chinese/">基于HTK开源框架的汉语语音识别 (GMM-HMM)</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-26T07:10:08.000Z">2021-03-26</time></p><p class="title"><a href="/2021/03/26/ASR/ASR_Kaldi_DNN_Chinese/">基于Kaldi（DNN）的小词汇量汉语语音识别平台搭建</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.png" alt="吃饭不加糖" height="28"></a><p class="is-size-7"><span>&copy; 2021 吃饭不加糖</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
